@@ -6,12 +6,12 @@ const apps = [
         max_memory_restart: "1G",
         autorestart: false,
         watch: false,
-        cwd: "/root/team/dashboard",
+        cwd: "/var/team/dashboard_hummingbot",
         output: './logs/out.log',
         error: './logs/error.log',
         log_date_format: "DD-MM-YYYY hh:mm",
         env: {
-            "PYTHONPATH": "${PYTHONPATH}:/root/team/dashboard",
+            "PYTHONPATH": "${PYTHONPATH}:/var/team/dashboard_hummingbot",
         }
     },
 ]
