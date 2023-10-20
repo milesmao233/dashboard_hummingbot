@@ -141,3 +141,5 @@ hummingbot_files/templates/master_bot_conf/conf/*
 hummingbot_files/templates/master_bot_conf/logs/*
 
 **/.DS_Store
+
+bot_configs/
