@@ -143,3 +143,5 @@ hummingbot_files/templates/master_bot_conf/logs/*
 **/.DS_Store
 
 bot_configs/
+
+pm2_dashboard_start.config.js
