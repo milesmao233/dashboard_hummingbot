@@ -31,6 +31,11 @@ dingding_api = {
     'secret': 'SEC4c59245a55e3bcdb6842969f0a85aaa71fe3df12de77f92fe531038e84d5bdab',
 }
 
+dingding_api_waiting = {
+    'robot_id': 'f3628200d15b94367977133bd17dd46e541a946ef1ae4f70051a69b7e7d591d3',
+    'secret': 'SEC47ad8afd4567980214e8f9a5de3f3bc501063bf0b1aacb34f2cec7b3a0d33721',
+}
+
 
 # ===发送钉钉相关函数
 # 计算钉钉时间戳
@@ -983,9 +988,11 @@ class DynamicHedgeQueue(ScriptStrategyBase):
                 enter_time = waiting_result.iloc[-1]['candle_begin_time']
                 self.in_waiting_list.append(symbol)
                 self.observed_list_append(symbol, enter_time, last_two_row2)
+                self.logger().info(f'account: {self.account_name} \n 进入 waiting_list 信号: {symbol}  \n 当前 waiting_list: {self.in_waiting_list} \n 当前 trading_list: {self.in_trading_list}')
+
                 send_dingding_msg(
                     f"account: {self.account_name} \n 进入 waiting_list 信号: {symbol}  \n  当前 waiting_list: {self.in_waiting_list} \n  当前 trading_list: {self.in_trading_list}",
-                    dingding_api)
+                    dingding_api_waiting)
 
             if symbol in self.in_waiting_list:
                 # 获取 symbol_relative 的值
@@ -1029,7 +1036,7 @@ class DynamicHedgeQueue(ScriptStrategyBase):
                         self.observed_symbol_param.pop(symbol)
 
                         send_dingding_msg(
-                            f"account: {self.account_name} \n进入 trading_list 信号: {symbol}  \n  当前 waiting_list: {self.in_waiting_list} \n  当前 trading_list: {self.in_trading_list}",
+                            f"account: {self.account_name} \n进入 trading_list 信号: {symbol}  \n 当前 waiting_list: {self.in_waiting_list} \n 当前 trading_list: {self.in_trading_list}",
                             dingding_api)
                     else:
                         self.logger().info(f'超过最大持仓数量 {max_trading_symbol}, 未加入 symbol: {symbol}')
