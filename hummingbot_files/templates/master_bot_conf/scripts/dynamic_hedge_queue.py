@@ -1048,6 +1048,9 @@ class DynamicHedgeQueue(ScriptStrategyBase):
                     self.in_waiting_list.remove(symbol)
                     self.observed_symbol_param.pop(symbol)
                     self.logger().info(f'超时 {symbol} remove from in_waiting_list')
+                    send_dingding_msg(
+                        f"account: {self.account_name} \n 超时离开 waiting_list 信号: {symbol}  \n  当前 waiting_list: {self.in_waiting_list} \n  当前 trading_list: {self.in_trading_list}",
+                        dingding_api_waiting)
 
             if symbol in self.in_trading_list:
                 # 获取 symbol_relative 的值
@@ -1092,6 +1095,9 @@ class DynamicHedgeQueue(ScriptStrategyBase):
                     self.in_waiting_list.append(symbol)
                     enter_time = last_row.iloc[-1]['candle_begin_time']
                     self.observed_list_append(symbol, enter_time, last_two_row2)
+                    send_dingding_msg(
+                        f"account: {self.account_name} \n 追踪止盈 放入 waiting_list : {symbol}  \n  当前 waiting_list: {self.in_waiting_list} \n  当前 trading_list: {self.in_trading_list}",
+                        dingding_api_waiting)
 
                     send_dingding_msg(
                         f"account: {self.account_name} \n移除 trading_list 信号: {symbol}  \n  追踪止盈 放入 waiting_list \n 当前 waiting_list: {self.in_waiting_list} \n  当前 trading_list: {self.in_trading_list}",
