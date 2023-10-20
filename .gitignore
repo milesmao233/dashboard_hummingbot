@@ -144,4 +144,4 @@ hummingbot_files/templates/master_bot_conf/logs/*
 
 bot_configs/
 
-pm2_dashboard_start.config.js
+./pm2_dashboard_start.config.js
