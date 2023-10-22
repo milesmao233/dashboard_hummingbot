@@ -288,8 +288,8 @@ class DynamicHedgeQueue(ScriptStrategyBase):
     # }
 
     account_name = "miles_account"
-    total_amount = 100
-    every_amount = 20
+    total_amount = 1000
+    every_amount = 200
     max_one_order_amount = 500
     intervals = ["1m"]
     days_to_download = 6
@@ -658,14 +658,14 @@ class DynamicHedgeQueue(ScriptStrategyBase):
                 current_time = datetime.now()
                 print(f'当前时间 {current_time}，开始获取最新数据并进行计算')
 
-                for waiting_symbol in self.in_waiting_list:
-                    symbol = self.observed_symbol_param[waiting_symbol]['symbol']
-                    enter_time = self.observed_symbol_param[waiting_symbol]['enter_time']
-                    if current_time - enter_time > timedelta(minutes=(self.strategy_conf['conf']["g_observed_timeout"] / 60)):
-                        self.in_waiting_list.remove(waiting_symbol)
-                        # self.observed_symbol_param {} 移除 symbol
-                        self.observed_symbol_param.pop(symbol)
-                        self.logger().info(f'reason: waiting timeout, {symbol} remove from in_waiting_list, time: {current_time}')
+                # for waiting_symbol in self.in_waiting_list:
+                #     symbol = self.observed_symbol_param[waiting_symbol]['symbol']
+                #     enter_time = self.observed_symbol_param[waiting_symbol]['enter_time']
+                #     if current_time - enter_time > timedelta(minutes=(self.strategy_conf['conf']["g_observed_timeout"] / 60)):
+                #         self.in_waiting_list.remove(waiting_symbol)
+                #         # self.observed_symbol_param {} 移除 symbol
+                #         self.observed_symbol_param.pop(symbol)
+                #         self.logger().info(f'reason: waiting timeout, {symbol} remove from in_waiting_list, time: {current_time}')
 
                 new_candles_dict = self.get_new_last_df()
 
