@@ -256,40 +256,49 @@ def concat_two_df_keep_last(df1, df2):
 
 
 class DynamicHedgeQueue(ScriptStrategyBase):
-    symbol_list = [
-        'UNFI-USDT', 'GLM-USDT', 'SPELL-USDT',
-        'PENDLE-USDT', 'BSW-USDT', 'TWT-USDT',
-        'CVC-USDT', 'JOE-USDT', 'GLMR-USDT',
-        'HIFI-USDT', 'OXT-USDT', 'CHR-USDT',
-        'API3-USDT', 'ATA-USDT', 'KNC-USDT',
-        'RUNE-USDT', 'TRX-USDT', 'STMX-USDT',
-        'OGN-USDT', 'BLZ-USDT', 'AKRO-USDT',
-        'APT-USDT', 'QNT-USDT', 'ZRX-USDT',
-        'LPT-USDT', 'XVS-USDT', 'LINA-USDT',
-        'LQTY-USDT', 'ENJ-USDT'
-    ]
+    # symbol_list = ['APT-USDT', 'RLC-USDT', 'AUCTION-USDT', 'OG-USDT', 'HIVE-USDT', 'PHA-USDT', 'VIB-USDT', 'PERP-USDT', 'SPELL-USDT', 'POWR-USDT', 'MAGIC-USDT', 'PLA-USDT', 'CVC-USDT', 'KSM-USDT', 'STORJ-USDT', 'TLM-USDT', 'FLM-USDT', 'WTC-USDT', 'IDEX-USDT', 'DATA-USDT', 'CTXC-USDT', 'FARM-USDT', 'OM-USDT', 'TFUEL-USDT', 'BICO-USDT', 'UMA-USDT', 'PEOPLE-USDT', 'ONG-USDT', 'AR-USDT', 'ACH-USDT', 'BEL-USDT', 'LOOM-USDT', 'MLN-USDT', 'ZEN-USDT', 'MTL-USDT', 'CLV-USDT', 'TVK-USDT', 'LINA-USDT', 'RIF-USDT', 'POND-USDT', 'XVS-USDT', 'LIT-USDT', 'SKL-USDT', 'FIS-USDT', 'RAD-USDT', 'PSG-USDT', 'ADX-USDT', 'TKO-USDT', 'STMX-USDT', 'POLS-USDT', 'BLZ-USDT', 'BETA-USDT', 'ANT-USDT', 'COTI-USDT', 'ALCX-USDT', 'CTK-USDT', 'NMR-USDT', 'RVN-USDT', 'QUICK-USDT', 'FIO-USDT', 'DCR-USDT', 'STPT-USDT', 'COS-USDT', 'IQ-USDT', 'HFT-USDT', 'HIFI-USDT', 'GLM-USDT', 'LRC-USDT', 'YGG-USDT', 'KNC-USDT', 'AKRO-USDT', 'ALICE-USDT', 'ICX-USDT', 'UTK-USDT', 'PORTO-USDT', 'JST-USDT', 'API3-USDT', 'ACA-USDT', 'VITE-USDT', 'FRONT-USDT', 'JOE-USDT', 'ALPINE-USDT', 'TOMO-USDT', 'AERGO-USDT', 'SYS-USDT', 'GLMR-USDT', 'WING-USDT', 'MOVR-USDT', 'OSMO-USDT', 'PUNDIX-USDT', 'BAND-USDT', 'DGB-USDT', 'IOST-USDT', 'WAXP-USDT', 'FIDA-USDT', 'RUNE-USDT', 'BNT-USDT', 'ENJ-USDT', 'ARPA-USDT', 'CHR-USDT']
+    symbol_list = ['FLUX-USDT', 'ONE-USDT', 'PYR-USDT', 'ALPHA-USDT', 'ONT-USDT', 'RARE-USDT', 'QNT-USDT', 'DEGO-USDT', 'FORTH-USDT', 'SNT-USDT', 'LOKA-USDT', 'MC-USDT', 'ATA-USDT', 'DIA-USDT', 'AUDIO-USDT', 'NULS-USDT', 'XNO-USDT', 'STEEM-USDT', 'VIDT-USDT', 'IRIS-USDT', 'SUSHI-USDT', 'UNFI-USDT', 'MOB-USDT', 'AMB-USDT', 'REN-USDT', 'MBL-USDT', 'WAN-USDT', 'FOR-USDT', 'FET-USDT', 'SSV-USDT', 'BAT-USDT', 'YFI-USDT', 'KMD-USDT', 'GAL-USDT', 'MBOX-USDT', 'POLYX-USDT', 'SYN-USDT', 'ORN-USDT', 'AVA-USDT', 'SCRT-USDT', 'MULTI-USDT', 'AST-USDT', 'VOXEL-USDT', 'OAX-USDT', 'DAR-USDT', 'PHB-USDT', 'TRB-USDT', 'GNS-USDT', 'QKC-USDT', 'BOND-USDT', 'LQTY-USDT', 'SANTOS-USDT', 'BAKE-USDT', 'MDT-USDT', 'PROM-USDT', 'OXT-USDT', 'LTO-USDT', 'AGLD-USDT', 'DODO-USDT', 'LAZIO-USDT', 'TWT-USDT', 'GTC-USDT', 'OGN-USDT', 'ARDR-USDT', 'CVX-USDT', 'DREP-USDT', 'HIGH-USDT', 'STRAX-USDT', 'NTRN-USDT', 'SUPER-USDT', 'RDNT-USDT', 'CTSI-USDT', 'IOTX-USDT', 'LPT-USDT', 'C98-USDT', 'QI-USDT', 'SXP-USDT', 'REQ-USDT', 'ALPACA-USDT', 'LSK-USDT', 'NKN-USDT', 'ZRX-USDT', 'TRU-USDT', 'CHESS-USDT', 'HARD-USDT', 'WAVES-USDT', 'PENDLE-USDT', 'GAS-USDT', 'BSW-USDT', 'CITY-USDT', 'FIRO-USDT', 'BAL-USDT', 'BADGER-USDT', 'TRX-USDT', 'CELR-USDT', 'QTUM-USDT', 'ANKR-USDT', 'DUSK-USDT', 'DOCK-USDT']
     # symbol_list = ["DOGE-USDT"]
 
     cover_list = ["ETH-USDT", "BTC-USDT"]
     index_list = ["ETH-USDT", "BTC-USDT"]
 
+    # trading_pairs: str = {
+    #     'APT-USDT', 'RLC-USDT', 'AUCTION-USDT', 'OG-USDT', 'HIVE-USDT', 'PHA-USDT', 'VIB-USDT', 'PERP-USDT',
+    #     'SPELL-USDT', 'POWR-USDT', 'MAGIC-USDT', 'PLA-USDT', 'CVC-USDT', 'KSM-USDT', 'STORJ-USDT', 'TLM-USDT',
+    #     'FLM-USDT', 'WTC-USDT', 'IDEX-USDT', 'DATA-USDT', 'CTXC-USDT', 'FARM-USDT', 'OM-USDT', 'TFUEL-USDT',
+    #     'BICO-USDT', 'UMA-USDT', 'PEOPLE-USDT', 'ONG-USDT', 'AR-USDT', 'ACH-USDT', 'BEL-USDT', 'LOOM-USDT', 'MLN-USDT',
+    #     'ZEN-USDT', 'MTL-USDT', 'CLV-USDT', 'TVK-USDT', 'LINA-USDT', 'RIF-USDT', 'POND-USDT', 'XVS-USDT', 'LIT-USDT',
+    #     'SKL-USDT', 'FIS-USDT', 'RAD-USDT', 'PSG-USDT', 'ADX-USDT', 'TKO-USDT', 'STMX-USDT', 'POLS-USDT', 'BLZ-USDT',
+    #     'BETA-USDT', 'ANT-USDT', 'COTI-USDT', 'ALCX-USDT', 'CTK-USDT', 'NMR-USDT', 'RVN-USDT', 'QUICK-USDT', 'FIO-USDT',
+    #     'DCR-USDT', 'STPT-USDT', 'COS-USDT', 'IQ-USDT', 'HFT-USDT', 'HIFI-USDT', 'GLM-USDT', 'LRC-USDT', 'YGG-USDT',
+    #     'KNC-USDT', 'AKRO-USDT', 'ALICE-USDT', 'ICX-USDT', 'UTK-USDT', 'PORTO-USDT', 'JST-USDT', 'API3-USDT',
+    #     'ACA-USDT', 'VITE-USDT', 'FRONT-USDT', 'JOE-USDT', 'ALPINE-USDT', 'TOMO-USDT', 'AERGO-USDT', 'SYS-USDT',
+    #     'GLMR-USDT', 'WING-USDT', 'MOVR-USDT', 'OSMO-USDT', 'PUNDIX-USDT', 'BAND-USDT', 'DGB-USDT', 'IOST-USDT',
+    #     'WAXP-USDT', 'FIDA-USDT', 'RUNE-USDT', 'BNT-USDT', 'ENJ-USDT', 'ARPA-USDT', 'CHR-USDT', 'ETH-USDT', 'BTC-USDT',
+    # }
+
     trading_pairs: str = {
-        'UNFI-USDT', 'GLM-USDT', 'SPELL-USDT', 'PENDLE-USDT',
-        'BSW-USDT', 'TWT-USDT', 'CVC-USDT', 'JOE-USDT',
-        'GLMR-USDT', 'HIFI-USDT', 'OXT-USDT', 'CHR-USDT',
-        'API3-USDT', 'ATA-USDT', 'KNC-USDT', 'RUNE-USDT',
-        'TRX-USDT', 'STMX-USDT', 'OGN-USDT', 'BLZ-USDT',
-        'AKRO-USDT', 'APT-USDT', 'QNT-USDT', 'ZRX-USDT',
-        'LPT-USDT', 'XVS-USDT', 'LINA-USDT', 'LQTY-USDT',
-        'ENJ-USDT', "ETH-USDT", "BTC-USDT",
+        'FLUX-USDT', 'ONE-USDT', 'PYR-USDT', 'ALPHA-USDT', 'ONT-USDT', 'RARE-USDT', 'QNT-USDT', 'DEGO-USDT',
+        'FORTH-USDT', 'SNT-USDT', 'LOKA-USDT', 'MC-USDT', 'ATA-USDT', 'DIA-USDT', 'AUDIO-USDT', 'NULS-USDT', 'XNO-USDT',
+        'STEEM-USDT', 'VIDT-USDT', 'IRIS-USDT', 'SUSHI-USDT', 'UNFI-USDT', 'MOB-USDT', 'AMB-USDT', 'REN-USDT',
+        'MBL-USDT', 'WAN-USDT', 'FOR-USDT', 'FET-USDT', 'SSV-USDT', 'BAT-USDT', 'YFI-USDT', 'KMD-USDT', 'GAL-USDT',
+        'MBOX-USDT', 'POLYX-USDT', 'SYN-USDT', 'ORN-USDT', 'AVA-USDT', 'SCRT-USDT', 'MULTI-USDT',
+        'AST-USDT', 'VOXEL-USDT', 'OAX-USDT', 'DAR-USDT', 'PHB-USDT', 'TRB-USDT', 'GNS-USDT', 'QKC-USDT', 'BOND-USDT',
+        'LQTY-USDT', 'SANTOS-USDT', 'BAKE-USDT', 'MDT-USDT', 'PROM-USDT', 'OXT-USDT', 'LTO-USDT', 'AGLD-USDT',
+        'DODO-USDT', 'LAZIO-USDT', 'TWT-USDT', 'GTC-USDT', 'OGN-USDT', 'ARDR-USDT', 'CVX-USDT', 'DREP-USDT',
+        'HIGH-USDT', 'STRAX-USDT', 'NTRN-USDT', 'SUPER-USDT', 'RDNT-USDT', 'CTSI-USDT', 'IOTX-USDT', 'LPT-USDT',
+        'C98-USDT', 'QI-USDT', 'SXP-USDT', 'REQ-USDT', 'ALPACA-USDT', 'LSK-USDT', 'NKN-USDT', 'ZRX-USDT', 'TRU-USDT',
+        'CHESS-USDT', 'HARD-USDT', 'WAVES-USDT', 'PENDLE-USDT', 'GAS-USDT', 'BSW-USDT', 'CITY-USDT', 'FIRO-USDT',
+        'BAL-USDT', 'BADGER-USDT', 'TRX-USDT', 'CELR-USDT', 'QTUM-USDT', 'ANKR-USDT', 'DUSK-USDT', 'DOCK-USDT', 'ETH-USDT', 'BTC-USDT',
     }
     # trading_pairs: str = {
     #     "DOGE-USDT", "ETH-USDT", "BTC-USDT",
     # }
 
-    account_name = "miles_account"
-    total_amount = 1000
-    every_amount = 200
+    account_name = "sun_account_2"
+    total_amount = 10000
+    every_amount = 2000
     max_one_order_amount = 500
     intervals = ["1m"]
     days_to_download = 6
@@ -308,6 +317,7 @@ class DynamicHedgeQueue(ScriptStrategyBase):
     trading_symbol_param = {}
     price_source = PriceType.MidPrice
     check_position = False
+    save_config_data_time = datetime.now().strftime("%Y%m%d%H")
 
     head_columns = [
         'candle_begin_time',
@@ -684,7 +694,8 @@ class DynamicHedgeQueue(ScriptStrategyBase):
 
                 # before_config_dict 与 update_index_candles_data 行数相同
                 start_time = datetime.now()
-                self.last_settle_df_dict = self.settle_last_data(before_config_dict, update_index_candles_data)
+                self.last_settle_df_dict = self.settle_last_data(before_config_dict, update_index_candles_data, start_time)
+
                 self.calc_trading_position()
                 # for symbol, df in self.last_settle_df_dict.items():
                 #     self.save_log(df, f'{symbol}_last_data')
@@ -884,8 +895,6 @@ class DynamicHedgeQueue(ScriptStrategyBase):
 
                 config_data_last_df[symbol_name] = df.tail(self.last_candles_num)
 
-                self.save_log(df, f'{symbol_name}_config_data')
-
         return config_data_last_df
 
     def get_last_index_candles(self, history_row_candles):
@@ -984,7 +993,7 @@ class DynamicHedgeQueue(ScriptStrategyBase):
             waiting_df = self.settle_waiting_data(last_two_row2)
             waiting_result = self.calc_filter_waiting_data(waiting_df)
 
-            if waiting_result.iloc[-1]['enter_waiting_list'] == 1 and symbol not in self.in_waiting_list:
+            if waiting_result.iloc[-1]['enter_waiting_list'] == 1 and symbol not in self.in_waiting_list and symbol not in self.in_trading_list:
                 enter_time = waiting_result.iloc[-1]['candle_begin_time']
                 self.in_waiting_list.append(symbol)
                 self.observed_list_append(symbol, enter_time, last_two_row2)
@@ -995,6 +1004,18 @@ class DynamicHedgeQueue(ScriptStrategyBase):
                     dingding_api_waiting)
 
             if symbol in self.in_waiting_list:
+                # 如果在 waiting_list 超时，移除 symbol
+                current_time = waiting_result.iloc[-1]['candle_begin_time']
+                enter_time = self.observed_symbol_param[symbol]['enter_time']
+                if current_time - enter_time > timedelta(minutes=(conf["g_observed_timeout"] / 60)):
+                    self.in_waiting_list.remove(symbol)
+                    self.observed_symbol_param.pop(symbol)
+                    self.logger().info(f'超时 {symbol} remove from in_waiting_list')
+                    send_dingding_msg(
+                        f"account: {self.account_name} \n 超时离开 waiting_list 信号: {symbol}  \n  当前 waiting_list: {self.in_waiting_list} \n  当前 trading_list: {self.in_trading_list}",
+                        dingding_api_waiting)
+                    continue
+
                 # 获取 symbol_relative 的值
                 symbol_relative = last_row.iloc[-1]['symbol_relative']
                 current_close = last_row.iloc[-1]['close']
@@ -1031,6 +1052,8 @@ class DynamicHedgeQueue(ScriptStrategyBase):
                         self.trading_symbol_param[symbol]['symbol'] = symbol
                         self.trading_symbol_param[symbol]['enter_time'] = last_row.iloc[-1]['candle_begin_time']
                         self.trading_symbol_param[symbol]['open_symbol_relative'] = last_row.iloc[-1]['symbol_relative']
+                        self.trading_symbol_param[symbol]['max_symbol_relative_pct_change'] = 0
+                        self.trading_symbol_param[symbol]['take_profit_trigger'] = False
                         # 移除 in_waiting_list
                         self.in_waiting_list.remove(symbol)
                         self.observed_symbol_param.pop(symbol)
@@ -1041,17 +1064,6 @@ class DynamicHedgeQueue(ScriptStrategyBase):
                     else:
                         self.logger().info(f'超过最大持仓数量 {max_trading_symbol}, 未加入 symbol: {symbol}')
 
-                # 如果在 waiting_list 超时，移除 symbol
-                current_time = waiting_result.iloc[-1]['candle_begin_time']
-                enter_time = self.observed_symbol_param[symbol]['enter_time']
-                if current_time - enter_time > timedelta(minutes=(conf["g_observed_timeout"] / 60)):
-                    self.in_waiting_list.remove(symbol)
-                    self.observed_symbol_param.pop(symbol)
-                    self.logger().info(f'超时 {symbol} remove from in_waiting_list')
-                    send_dingding_msg(
-                        f"account: {self.account_name} \n 超时离开 waiting_list 信号: {symbol}  \n  当前 waiting_list: {self.in_waiting_list} \n  当前 trading_list: {self.in_trading_list}",
-                        dingding_api_waiting)
-
             if symbol in self.in_trading_list:
                 # 获取 symbol_relative 的值
                 current_time = last_row.iloc[-1]['candle_begin_time']
@@ -1061,15 +1073,15 @@ class DynamicHedgeQueue(ScriptStrategyBase):
                 g_stop_loss_relative_change_threshold = conf['g_stop_loss_relative_change_threshold']
                 g_opened_timeout = conf['g_opened_timeout']
 
-                # 止损平仓 或 超时平仓，平仓后要从 waiting_list 移除
+                # 止损平仓 或 超时平仓
                 if symbol_relative_pct_change < g_stop_loss_relative_change_threshold \
                         or current_time - self.trading_symbol_param[symbol]['enter_time'] > timedelta(
                     minutes=g_opened_timeout):
                     self.in_trading_list.remove(symbol)
                     self.logger().info(f'{symbol} remove from in_trading_list')
-                    self.in_waiting_list.remove(symbol)
-                    self.observed_symbol_param.pop(symbol)
-                    self.logger().info(f'{symbol} remove from in_waiting_list')
+                    # self.in_waiting_list.remove(symbol)
+                    # self.observed_symbol_param.pop(symbol)
+                    # self.logger().info(f'{symbol} remove from in_waiting_list')
 
                     send_dingding_msg(
                         f"account: {self.account_name} \n移除 trading_list 信号: {symbol}  \n  止损平仓 或 超时平仓 \n 当前 waiting_list: {self.in_waiting_list} \n  当前 trading_list: {self.in_trading_list}",
@@ -1375,7 +1387,7 @@ class DynamicHedgeQueue(ScriptStrategyBase):
 
         return condition_macd_1_last, condition_macd_2_last, condition_macd_3_last
 
-    def settle_last_data(self, before_config_dict, update_index_candles_data):
+    def settle_last_data(self, before_config_dict, update_index_candles_data, current_time):
         # show_df = before_config_dict['DOGE-USDT']
         # self.logger().info(f'before_config_dict: \n{show_df}')
         # # save log
@@ -1385,12 +1397,21 @@ class DynamicHedgeQueue(ScriptStrategyBase):
         # self.save_log(update_index_candles_data, 'update_index_candles_data')
 
         after_config_dict = {}
+        if self.save_config_data_time != current_time.strftime('%Y%m%d%H'):
+            save_tag = True
+            self.save_config_data_time = current_time.strftime('%Y%m%d%H')
+        else:
+            save_tag = False
+
         for symbol, df in before_config_dict.items():
             # 循环 df
             # 填充最后3行新的数据
             after_df = self.calc_last_df(symbol, df, update_index_candles_data)
             after_df = after_df.tail(self.last_candles_num)
             after_df.reset_index(drop=True, inplace=True)
+
+            if save_tag:
+                self.save_log(after_df, f'{symbol}_after_config_data')
 
             after_config_dict[symbol] = after_df
 
@@ -1445,7 +1466,7 @@ class DynamicHedgeQueue(ScriptStrategyBase):
         return df
 
     def update_first_cycle_data(self, df):
-        for i in range(len(df) - 5, len(df)):
+        for i in range(len(df) - (self.current_candles_num + 2), len(df)):
             current_row = df.iloc[i]
             last_row = df.iloc[i - 1]
             candle_time = current_row['candle_begin_time']
@@ -1530,7 +1551,7 @@ class DynamicHedgeQueue(ScriptStrategyBase):
         return df
 
     def update_second_cycle_data(self, df):
-        for i in range(len(df) - 5, len(df)):
+        for i in range(len(df) - (self.current_candles_num + 2), len(df)):
             current_row = df.iloc[i]
             last_row = df.iloc[i - 1]
             candle_time = current_row['candle_begin_time']
@@ -1610,7 +1631,7 @@ class DynamicHedgeQueue(ScriptStrategyBase):
         return df
 
     def update_third_cycle_data(self, df):
-        for i in range(len(df) - 5, len(df)):
+        for i in range(len(df) - (self.current_candles_num + 2), len(df)):
             current_row = df.iloc[i]
             last_row = df.iloc[i - 1]
             candle_time = current_row['candle_begin_time']
